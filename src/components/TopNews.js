@@ -1,9 +1,10 @@
 import React from 'react';
-import { Carousel} from 'react-bootstrap'
+import { Carousel, Card } from 'react-bootstrap'
 
 function TopNews() {
     return (
         <div>
+            <Card.Header className="text-center">Trending News</Card.Header>
             <Carousel>
                 <Carousel.Item>
                     <img
