@@ -7,7 +7,8 @@ function Home() {
         <main>
             <br/>
             <br/>
-            <WeatherCard/>
+            <WeatherCard title="Current Weather"/>
+            <WeatherCard title="Tomorrow's Weather"/>
             <br/>
             <br/>
             <TopNews/>
