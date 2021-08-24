@@ -1,7 +1,7 @@
 
 import './App.css';
 import Navbar from './components/Navegation';
-import Home from './components/Home'
+import Home from './components/Home/Home.js'
 import Footer from './components/Footer/Footer.js'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
