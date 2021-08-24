@@ -2,6 +2,14 @@ h3 {
     margin-left: 10px;
 }
 
+.info {
+    margin-top: 5px;
+}
+
 .item {
+    align-items: center;
+    display: flex;
+    height: 100%;
     width: 40%;
 }
+
