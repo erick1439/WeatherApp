@@ -1,20 +1,29 @@
 import React from 'react';
 import { Carousel, Card } from 'react-bootstrap'
+import "./TopNews.css"
+
 
 class TopNews extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            news : []
+            length : 0,
+            news : [0, 0, 0]
         }
     }
 
     getNews() {
 
         fetch ('https://newsapi.org/v2/top-headlines?country=us&apiKey=d960dcc8aae0413c9aba0c5ad0c717d4').then(res => res.json()).then((result) => { 
+
+            for (let i = 0; i < result.articles.length; i++) {
+                if (result.articles[i].urlToImage === null)
+                    result.articles.splice(i, 1);
+            }
             
             this.setState({
+                length : result.articles.length,
                 news : result.articles
             });
         });
@@ -33,36 +42,42 @@ class TopNews extends React.Component {
                     <Carousel.Item>
                         <img
                         className="d-block w-100"
-                        src="https://picsum.photos/1440/300"
+                        src={this.state.news[0].urlToImage}
                         alt="First slide"
                         />
                         <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <div className="background">
+                            <h3>{this.state.news[0].title}</h3>
+                            <p>{this.state.news[0].description}</p>
+                        </div>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
                         className="d-block w-100"
-                        src="https://picsum.photos/1440/300"
+                        src={this.state.news[1].urlToImage}
                         alt="Second slide"
                         />
 
                         <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <div className="background">
+                            <h3>{this.state.news[1].title}</h3>
+                            <p>{this.state.news[1].description}</p>
+                        </div>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
                         className="d-block w-100"
-                        src="https://picsum.photos/1440/300"
+                        src={this.state.news[2].urlToImage}
                         alt="Third slide"
                         />
 
                         <Carousel.Caption>
-                        <h3>Third slide label</h3>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        <div className="background">
+                            <h3>{this.state.news[2].title}</h3>
+                            <p>{this.state.news[2].description}</p>
+                        </div>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>

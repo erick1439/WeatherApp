@@ -1,6 +1,6 @@
 import React from 'react';
 import WeatherCard from './WeatherCard/WeatherCard.js';
-import TopNews from './TopNews'
+import TopNews from './TopNews/TopNews.js'
 
 function Home() {
     return(
