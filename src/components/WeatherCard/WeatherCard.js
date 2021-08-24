@@ -20,7 +20,7 @@ class WeatherCard extends React.Component {
         };
     }
 
-    componentDidMount() {
+    getWeather() {
         fetch ('http://api.openweathermap.org/data/2.5/forecast?q=orlando&cnt=5&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e').then(res => res.json()).then((result) => {
 
             this.setState({
@@ -35,6 +35,13 @@ class WeatherCard extends React.Component {
                 wind_speed : result.list[0].wind.speed.toString()
             });
         });
+        
+    }
+
+    componentDidMount() {
+
+        this.getWeather();
+
     }
 
     render() {
