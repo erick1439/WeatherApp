@@ -2,8 +2,6 @@ import React from 'react';
 import "./Navegation.css"
 import { Navbar, Form, FormControl, Button } from 'react-bootstrap'
 
-// https://extreme-ip-lookup.com/json/
-
 class Navegation extends React.Component {
     constructor(props) {
         super(props);
