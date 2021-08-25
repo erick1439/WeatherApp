@@ -26,7 +26,7 @@ class App extends React.Component {
     return (
       <div>
         <Navbar handler={this.handler} />
-        <Home/>
+        <Home city={this.state.searchedCity}/>
         <Footer/>
       </div>
     );
