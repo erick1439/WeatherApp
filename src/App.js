@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      searchedCity : "orlando"
+      searchedCity : ""
     }
 
     this.handler = this.handler.bind(this);
@@ -20,6 +20,22 @@ class App extends React.Component {
 
   handler(value) {
     this.setState({searchedCity : value});
+  }
+
+  componentDidMount() {
+
+    fetch('https://extreme-ip-lookup.com/json/')
+    .then( res => res.json())
+    .then(response => {
+        
+        this.setState({
+            searchedCity : response.city,
+        });
+
+    })
+    .catch((data, status) => {
+        alert("Location Service Error")
+    })
   }
 
   render() {
