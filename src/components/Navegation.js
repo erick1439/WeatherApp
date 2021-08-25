@@ -64,7 +64,7 @@ class Navegation extends React.Component {
                             className="mr-2"
                             aria-label="Search"
                         />
-                        <Button variant="outline-success">Search</Button>
+                        <Button variant="outline-success" onClick={ (event) => {this.props.handler(event.target.previousSibling.value);}}>Search</Button>
                         </Form>
                     </Navbar.Collapse>
                 </Navbar>

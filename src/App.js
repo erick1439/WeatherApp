@@ -12,13 +12,20 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      searchedCity : ""
+      searchedCity : "orlando"
     }
+
+    this.handler = this.handler.bind(this);
   }
+
+  handler(value) {
+    this.setState({searchedCity : value});
+  }
+
   render() {
     return (
       <div>
-        <Navbar/>
+        <Navbar handler={this.handler} />
         <Home/>
         <Footer/>
       </div>
