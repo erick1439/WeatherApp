@@ -22,8 +22,7 @@ class App extends React.Component {
     this.setState({searchedCity : value});
   }
 
-  componentDidMount() {
-
+  getDefaultLocation() {
     fetch('https://extreme-ip-lookup.com/json/')
     .then( res => res.json())
     .then(response => {
@@ -35,7 +34,13 @@ class App extends React.Component {
     })
     .catch((data, status) => {
         alert("Location Service Error")
-    })
+    });
+  }
+
+  componentDidMount() {
+
+    this.getDefaultLocation();
+
   }
 
   render() {

@@ -21,7 +21,9 @@ class WeatherCard extends React.Component {
     }
 
     getWeather() {
-        fetch ('http://api.openweathermap.org/data/2.5/forecast?q=orlando&cnt=5&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e').then(res => res.json()).then((result) => {
+        fetch ('http://api.openweathermap.org/data/2.5/forecast?q=orlando&cnt=5&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e')
+        .then(res => res.json())
+        .then((result) => {
 
             this.setState({
                 time : new Date(result.list[0].dt * 1000).toString(),  
@@ -34,8 +36,7 @@ class WeatherCard extends React.Component {
                 humidity : result.list[0].main.humidity.toString(), 
                 wind_speed : result.list[0].wind.speed.toString()
             });
-        });
-        
+        });  
     }
 
     componentDidMount() {
