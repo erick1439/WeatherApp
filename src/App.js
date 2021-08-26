@@ -57,9 +57,16 @@ class App extends React.Component {
     .then(res => res.json())
     .then((result) => {
 
+          let date = new Date();
+          let localTime = date.getTime();
+          let localOffset = date.getTimezoneOffset() * 60000;
+          let utc = localTime + localOffset;
+          let cityTime = utc + (1000 * result.timezone);
+          let newTime = new Date(cityTime);
+
         this.setState({
             searchedCity : city,
-            time : new Date(result.dt * 1000).toString(),  
+            time : newTime.toString(),  
             temp : result.main.temp.toString(),
             feelsLike : result.main.feels_like.toString(),
             weather_description : result.weather[0].description,
