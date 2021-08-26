@@ -30,30 +30,25 @@ class App extends React.Component {
   handler(value) {
 
     value = value.charAt(0).toUpperCase() + value.slice(1);
-
-    this.setState({searchedCity : value});
-    const test = this.getWeather(value);
-
-    console.log(test);
+    this.getWeather(value);
   }
 
   getDefaultLocation() {
     
     fetch('https://extreme-ip-lookup.com/json/')
-    .then( res => res.json())
+    .then(res => res.json())
     .then(response => {
         
         this.setState({
             searchedCity : response.city.charAt(0).toUpperCase() + response.city.slice(1),
         });
+        
+        this.getWeather(this.state.searchedCity);
 
     })
     .catch((data, status) => {
         alert("Location Service Error")
     });
-
-    console.log(this.state.searchedCity);
-    this.getWeather("orlando");
   }
 
   getWeather(city) {
@@ -63,6 +58,7 @@ class App extends React.Component {
     .then((result) => {
 
         this.setState({
+            searchedCity : city,
             time : new Date(result.list[0].dt * 1000).toString(),  
             temp : result.list[0].main.temp.toString(),
             feelsLike : result.list[0].main.feels_like.toString(),
