@@ -28,8 +28,13 @@ class App extends React.Component {
   }
 
   handler(value) {
+
+    value = value.charAt(0).toUpperCase() + value.slice(1);
+
     this.setState({searchedCity : value});
-    this.getWeather(value);
+    const test = this.getWeather(value);
+
+    console.log(test);
   }
 
   getDefaultLocation() {
@@ -39,7 +44,7 @@ class App extends React.Component {
     .then(response => {
         
         this.setState({
-            searchedCity : response.city,
+            searchedCity : response.city.charAt(0).toUpperCase() + response.city.slice(1),
         });
 
     })
@@ -52,6 +57,7 @@ class App extends React.Component {
   }
 
   getWeather(city) {
+
     fetch ('http://api.openweathermap.org/data/2.5/forecast?q=' + city +'&cnt=5&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e')
     .then(res => res.json())
     .then((result) => {
