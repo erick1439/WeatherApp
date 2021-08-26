@@ -25,18 +25,23 @@ class Navegation extends React.Component {
                     region : response.region
                 });
 
+                this.getWeather(response.city);
+
             })
             .catch((data, status) => {
                 alert("Location Service Error")
             })
     }
+    
 
-    getWeather() {
-        fetch ('http://api.openweathermap.org/data/2.5/forecast?q=orlando&cnt=5&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e').then(res => res.json()).then((result) => {
+    getWeather(city) {
+        
+        
+        fetch ("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e").then(res => res.json()).then((result) => {
 
             this.setState({
-                temp : Math.round(result.list[0].main.temp).toString(),
-                icon : "http://openweathermap.org/img/wn/" + result.list[0].weather[0].icon + "@2x.png",
+                temp : Math.round(result.main.temp).toString(),
+                icon : "http://openweathermap.org/img/wn/" + result.weather[0].icon + "@2x.png",
             });
         });
     }
@@ -44,7 +49,6 @@ class Navegation extends React.Component {
     componentDidMount() {
 
         this.getCity();
-        this.getWeather();
     }
 
     render() {
