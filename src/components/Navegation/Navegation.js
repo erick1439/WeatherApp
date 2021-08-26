@@ -1,6 +1,6 @@
 import React from 'react';
-import "./Navegation.css"
 import { Navbar, Form, FormControl, Button } from 'react-bootstrap'
+import "./Navegation.css"
 
 class Navegation extends React.Component {
     constructor(props) {

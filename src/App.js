@@ -1,6 +1,6 @@
 
 import './App.css';
-import Navbar from './components/Navegation';
+import Navbar from './components/Navegation/Navegation.js';
 import Home from './components/Home/Home.js'
 import Footer from './components/Footer/Footer.js'
 
@@ -42,7 +42,7 @@ class App extends React.Component {
         this.setState({
             searchedCity : response.city.charAt(0).toUpperCase() + response.city.slice(1),
         });
-        
+
         this.getWeather(this.state.searchedCity);
 
     })
