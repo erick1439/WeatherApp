@@ -9,8 +9,8 @@ function Home(props) {
             <br/>
             <br/>
             <div className="Container">
-                <WeatherCard title="Current Weather" city={props.city}/>
-                <WeatherCard title="Tomorrow's Weather" city={props.city}/>
+                <WeatherCard title="Current Weather" weatherInfo={props.weatherInfo}/>
+                <WeatherCard title="Tomorrow's Weather" weatherInfo={props.weatherInfo}/>
             </div>          
             <br/>
             <br/>
