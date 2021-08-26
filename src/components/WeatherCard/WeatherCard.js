@@ -5,12 +5,11 @@ import "./WeatherCard.css"
 
 class WeatherCard extends React.Component {   
     render() {
-        console.log(this.props.weatherInfo);
         return(
             <div>
                 <Card className="card">
                     <Card.Body>
-                        <Card.Title className="font-weight-bold">{this.props.title} : {this.props.weatherInfo.searchCity}</Card.Title>
+                        <Card.Title className="font-weight-bold">{this.props.title} : {this.props.weatherInfo.searchedCity}</Card.Title>
                         <Card.Text>
                             With supporting text below as a natural lead-in to additional content.
                         </Card.Text>
