@@ -21,7 +21,18 @@ class App extends React.Component {
       temp_min : "", 
       temp_max : "", 
       humidity : "", 
-      wind_speed : ""
+      wind_speed : "",
+      tomorrowsWeather : {
+        time : "",
+        temp : "",
+        feelsLike : "",
+        weather_description : "",
+        icon : "",
+        temp_min : "", 
+        temp_max : "", 
+        humidity : "", 
+        wind_speed : ""
+      }
     }
 
     this.handler = this.handler.bind(this);
@@ -31,6 +42,7 @@ class App extends React.Component {
 
     value = value.charAt(0).toUpperCase() + value.slice(1);
     this.getWeather(value);
+    this.getTomorrowsWeather(value);
   }
 
   getDefaultLocation() {
@@ -44,11 +56,48 @@ class App extends React.Component {
         });
 
         this.getWeather(this.state.searchedCity);
+        this.getTomorrowsWeather(this.state.searchedCity);
 
     })
     .catch((data, status) => {
         alert("Location Service Error")
     });
+  }
+
+  getTomorrowsWeather(city) {
+
+    fetch ("http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&cnt=2&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e")
+    .then(res => res.json())
+    .then((result) => {
+
+          let date = new Date();
+          let localTime = date.getTime();
+          let localOffset = date.getTimezoneOffset() * 60000;
+          let utc = localTime + localOffset;
+          let cityTime = utc + (1000 * result.timezone);
+          let newTime = new Date(cityTime);
+
+          let tomorrowsWeather = {
+            time : newTime.toString(),  
+            temp : result.list[1].main.temp.toString(),
+            feelsLike : result.list[1].main.feels_like.toString(),
+            weather_description : result.list[1].weather[0].description,
+            icon : "http://openweathermap.org/img/wn/" + result.list[1].weather[0].icon + "@2x.png",
+            temp_min : result.list[1].main.temp_min.toString(), 
+            temp_max : result.list[1].main.temp_max.toString(), 
+            humidity : result.list[1].main.humidity.toString(), 
+            wind_speed : result.list[1].wind.speed.toString()
+          }
+
+        this.setState({
+          tomorrowsWeather : tomorrowsWeather       
+        });
+    })
+    .catch((data, status) => {
+
+      alert("Unavailable to fetch tomorrow's weather");
+  });
+
   }
 
   getWeather(city) {
@@ -80,6 +129,7 @@ class App extends React.Component {
     .catch((data, status) => {
 
       alert("Please insert valid location");
+
   });  
 }
 
