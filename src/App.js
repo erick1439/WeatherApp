@@ -13,16 +13,20 @@ class App extends React.Component {
 
     this.state = {
       searchedCity : "",
-      time : "",  
-      temp : "",
-      feelsLike : "",
-      weather_description : "",
-      icon : "",
-      temp_min : "", 
-      temp_max : "", 
-      humidity : "", 
-      wind_speed : "",
-      tomorrowsWeather : {
+      currentWeather :
+      {
+        time : "",  
+        temp : "",
+        feelsLike : "",
+        weather_description : "",
+        icon : "",
+        temp_min : "", 
+        temp_max : "", 
+        humidity : "", 
+        wind_speed : "",
+      },
+      tomorrowsWeather : 
+      {
         time : "",
         temp : "",
         feelsLike : "",
@@ -70,33 +74,33 @@ class App extends React.Component {
     .then(res => res.json())
     .then((result) => {
 
-          let date = new Date();
-          let localTime = date.getTime();
-          let localOffset = date.getTimezoneOffset() * 60000;
-          let utc = localTime + localOffset;
-          let cityTime = utc + (1000 * result.timezone);
-          let newTime = new Date(cityTime);
+      let date = new Date();
+      let localTime = date.getTime();
+      let localOffset = date.getTimezoneOffset() * 60000;
+      let utc = localTime + localOffset;
+      let cityTime = utc + (1000 * result.timezone);
+      let newTime = new Date(cityTime);
 
-          let tomorrowsWeather = {
-            time : newTime.toString(),  
-            temp : result.list[1].main.temp.toString(),
-            feelsLike : result.list[1].main.feels_like.toString(),
-            weather_description : result.list[1].weather[0].description,
-            icon : "http://openweathermap.org/img/wn/" + result.list[1].weather[0].icon + "@2x.png",
-            temp_min : result.list[1].main.temp_min.toString(), 
-            temp_max : result.list[1].main.temp_max.toString(), 
-            humidity : result.list[1].main.humidity.toString(), 
-            wind_speed : result.list[1].wind.speed.toString()
-          }
+      let tomorrowsWeather = {
+        time : newTime.toString(),  
+        temp : result.list[1].main.temp.toString(),
+        feelsLike : result.list[1].main.feels_like.toString(),
+        weather_description : result.list[1].weather[0].description,
+        icon : "http://openweathermap.org/img/wn/" + result.list[1].weather[0].icon + "@2x.png",
+        temp_min : result.list[1].main.temp_min.toString(), 
+        temp_max : result.list[1].main.temp_max.toString(), 
+        humidity : result.list[1].main.humidity.toString(), 
+        wind_speed : result.list[1].wind.speed.toString()
+      }
 
-        this.setState({
-          tomorrowsWeather : tomorrowsWeather       
-        });
+      this.setState({
+        tomorrowsWeather : tomorrowsWeather       
+      });
+
     })
     .catch((data, status) => {
-
-      alert("Unavailable to fetch tomorrow's weather");
-  });
+      console.log("Unavailble to fetch tomorros weather");
+    });
 
   }
 
@@ -113,8 +117,7 @@ class App extends React.Component {
           let cityTime = utc + (1000 * result.timezone);
           let newTime = new Date(cityTime);
 
-        this.setState({
-            searchedCity : city,
+          let currentWeather = {
             time : newTime.toString(),  
             temp : result.main.temp.toString(),
             feelsLike : result.main.feels_like.toString(),
@@ -124,19 +127,21 @@ class App extends React.Component {
             temp_max : result.main.temp_max.toString(), 
             humidity : result.main.humidity.toString(), 
             wind_speed : result.wind.speed.toString()
+          }
+
+        this.setState({
+          searchedCity : city,
+          currentWeather : currentWeather
         });
     })
     .catch((data, status) => {
 
       alert("Please insert valid location");
-
   });  
 }
 
   componentDidMount() {
-
     this.getDefaultLocation();
-
   }
 
   render() {

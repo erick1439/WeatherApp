@@ -9,7 +9,7 @@ class WeatherCard extends React.Component {
             <div>
                 <Card className="card">
                     <Card.Body>
-                        <Card.Title className="font-weight-bold">{this.props.title} : {this.props.weatherInfo.searchedCity}</Card.Title>
+                        <Card.Title className="font-weight-bold">{this.props.title} : {this.props.city}</Card.Title>
                         <Card.Text>
                             With supporting text below as a natural lead-in to additional content.
                         </Card.Text>
