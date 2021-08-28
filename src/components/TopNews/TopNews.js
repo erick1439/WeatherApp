@@ -36,7 +36,7 @@ class TopNews extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="news">
                 <Card.Header className="text-center">Trending News</Card.Header>
                 <Carousel>
                     <Carousel.Item>
@@ -45,11 +45,9 @@ class TopNews extends React.Component {
                         src={this.state.news[0].urlToImage}
                         alt="First slide"
                         />
-                        <Carousel.Caption>
-                        <div className="background">
+                        <Carousel.Caption className="background">
                             <h3>{this.state.news[0].title}</h3>
                             <p>{this.state.news[0].description}</p>
-                        </div>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -59,11 +57,9 @@ class TopNews extends React.Component {
                         alt="Second slide"
                         />
 
-                        <Carousel.Caption>
-                        <div className="background">
+                        <Carousel.Caption className="background">
                             <h3>{this.state.news[1].title}</h3>
                             <p>{this.state.news[1].description}</p>
-                        </div>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -73,11 +69,9 @@ class TopNews extends React.Component {
                         alt="Third slide"
                         />
 
-                        <Carousel.Caption>
-                        <div className="background">
+                        <Carousel.Caption className="background">
                             <h3>{this.state.news[2].title}</h3>
                             <p>{this.state.news[2].description}</p>
-                        </div>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
