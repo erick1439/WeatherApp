@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Form, FormControl, Button, Container, NavbarBrand } from 'react-bootstrap'
+import { Navbar, Form, FormControl, Button, Container} from 'react-bootstrap'
 import "./Navegation.css"
 
 class Navegation extends React.Component {
