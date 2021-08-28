@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Form, FormControl, Button } from 'react-bootstrap'
+import { Navbar, Form, FormControl, Button, Container, NavbarBrand } from 'react-bootstrap'
 import "./Navegation.css"
 
 class Navegation extends React.Component {
@@ -53,13 +53,13 @@ class Navegation extends React.Component {
 
     render() {
         return (
-            <div>
-                <Navbar bg="light" expand="lg">
-                    <h3 className="item">Weather Website</h3>
-                    <div className="item">
+            <Container fluid>
+                <Navbar bg="dark" variant="dark" expand="lg">
+                    <Navbar.Brand>Weather Website</Navbar.Brand>
+                    <Navbar.Text className="item">
                         <p className="info">{this.state.city}, {this.state.region} {this.state.temp} &deg;F</p>
                         <img alt="weather icon" heigth="50px" width="40px" src={this.state.icon}/>
-                    </div>
+                    </Navbar.Text>
                     <Navbar.Collapse id="navbarScroll">
                         <Form className="d-flex">
                         <FormControl
@@ -68,11 +68,11 @@ class Navegation extends React.Component {
                             className="mr-2"
                             aria-label="Search"
                         />
-                        <Button variant="outline-success" onClick={ (event) => {this.props.handler(event.target.previousSibling.value);}}>Search</Button>
+                        <Button className="search" variant="outline-success" onClick={ (event) => {this.props.handler(event.target.previousSibling.value);}}>Search</Button>
                         </Form>
                     </Navbar.Collapse>
                 </Navbar>
-            </div>
+            </Container>
         );
     }
 }
