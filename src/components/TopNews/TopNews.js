@@ -1,5 +1,6 @@
 import React from 'react';
 import { Carousel, Card, Button } from 'react-bootstrap'
+import MoreNews from '../MoreNews/MoreNews.js';
 import "./TopNews.css"
 
 
@@ -9,7 +10,8 @@ class TopNews extends React.Component {
 
         this.state = {
             length : 0,
-            news : [0, 0, 0]
+            news : [0, 0, 0],
+            moreNews : [0]
         }
     }
 
@@ -21,63 +23,79 @@ class TopNews extends React.Component {
                 if (result.articles[i].urlToImage === null)
                     result.articles.splice(i, 1);
             }
+
+            let moreNews = result.articles.splice(3, result.articles.length);
+            let news = result.articles
+
             
             this.setState({
                 length : result.articles.length,
-                news : result.articles
+                news : news,
+                moreNews : moreNews
             });
+            
         });
     }
 
     componentDidMount() {
-
         this.getNews();
     }
 
     render() {
         return(
-            <div className="news">
-                <Card.Header className="text-center">Trending News</Card.Header>
-                <Carousel>
-                    <Carousel.Item>
-                        <img
-                        className="d-block w-100"
-                        src={this.state.news[0].urlToImage}
-                        alt="First slide"
-                        />
-                        <Carousel.Caption className="background">
-                            <h3>{this.state.news[0].title}</h3>
-                            <p>{this.state.news[0].description}</p>
-                            <Button className="button" variant="light" onClick={() => { window.open(this.state.news[0].url, "_blank");}}>Read more...</Button>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                        className="d-block w-100"
-                        src={this.state.news[1].urlToImage}
-                        alt="Second slide"
-                        />
+            <div>
+                <div className="news">
+                    <Card.Header className="text-center">Trending News</Card.Header>
+                    <Carousel>
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={this.state.news[0].urlToImage}
+                            alt="First slide"
+                            />
+                            <Carousel.Caption className="background">
+                                <h3>{this.state.news[0].title}</h3>
+                                <p>{this.state.news[0].description}</p>
+                                <Button className="button" variant="light" onClick={() => { window.open(this.state.news[0].url, "_blank");}}>Read more...</Button>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={this.state.news[1].urlToImage}
+                            alt="Second slide"
+                            />
 
-                        <Carousel.Caption className="background">
-                            <h3>{this.state.news[1].title}</h3>
-                            <p>{this.state.news[1].description}</p>
-                            <Button className="button" variant="light" onClick={() => { window.open(this.state.news[1].url, "_blank");}}>Read more...</Button>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                        className="d-block w-100"
-                        src={this.state.news[2].urlToImage}
-                        alt="Third slide"
-                        />
+                            <Carousel.Caption className="background">
+                                <h3>{this.state.news[1].title}</h3>
+                                <p>{this.state.news[1].description}</p>
+                                <Button className="button" variant="light" onClick={() => { window.open(this.state.news[1].url, "_blank");}}>Read more...</Button>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={this.state.news[2].urlToImage}
+                            alt="Third slide"
+                            />
 
-                        <Carousel.Caption className="background">
-                            <h3>{this.state.news[2].title}</h3>
-                            <p>{this.state.news[2].description}</p>
-                            <Button className="button" variant="light" onClick={() => { window.open(this.state.news[2].url, "_blank");}}>Read more...</Button>
-                        </Carousel.Caption>         
-                    </Carousel.Item>
-                </Carousel>
+                            <Carousel.Caption className="background">
+                                <h3>{this.state.news[2].title}</h3>
+                                <p>{this.state.news[2].description}</p>
+                                <Button className="button" variant="light" onClick={() => { window.open(this.state.news[2].url, "_blank");}}>Read more...</Button>
+                            </Carousel.Caption>         
+                        </Carousel.Item>
+                    </Carousel>  
+                </div>
+                <div className="storyCard">
+                    { 
+                        this.state.moreNews.map((story, index) => {
+                            return(
+                                <MoreNews key={index} title={story.title} urlToImage={story.urlToImage} url={story.url}/>
+                            );
+                        })
+                    }
+                </div>
             </div>
         );
     }
