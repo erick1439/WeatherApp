@@ -3,7 +3,6 @@ import './App.css';
 import Navbar from './components/Navegation/Navegation.js';
 import Home from './components/Home/Home.js'
 import Footer from './components/Footer/Footer.js'
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 
@@ -60,7 +59,6 @@ class App extends React.Component {
         });
 
         this.getWeather(this.state.searchedCity);
-        this.getTomorrowsWeather(this.state.searchedCity);
 
     })
     .catch((data, status) => {
@@ -74,15 +72,11 @@ class App extends React.Component {
     .then(res => res.json())
     .then((result) => {
 
-      let date = new Date();
-      let localTime = date.getTime();
-      let localOffset = date.getTimezoneOffset() * 60000;
-      let utc = localTime + localOffset;
-      let cityTime = utc + (1000 * result.timezone);
-      let newTime = new Date(cityTime);
+      const tomorrow = new Date(this.state.currentWeather.time);
+      tomorrow.setDate(tomorrow.getDate() + 1);
 
       let tomorrowsWeather = {
-        time : newTime.toString(),  
+        time : tomorrow.toString(),  
         temp : result.list[1].main.temp.toString(),
         feelsLike : result.list[1].main.feels_like.toString(),
         weather_description : result.list[1].weather[0].description,
@@ -109,30 +103,32 @@ class App extends React.Component {
     fetch ("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e")
     .then(res => res.json())
     .then((result) => {
+      
+      let date = new Date();
+      let localTime = date.getTime();
+      let localOffset = date.getTimezoneOffset() * 60000;
+      let utc = localTime + localOffset;
+      let cityTime = utc + (1000 * result.timezone);
+      let newTime = new Date(cityTime);
 
-          let date = new Date();
-          let localTime = date.getTime();
-          let localOffset = date.getTimezoneOffset() * 60000;
-          let utc = localTime + localOffset;
-          let cityTime = utc + (1000 * result.timezone);
-          let newTime = new Date(cityTime);
+      let currentWeather = {
+        time : newTime.toString(),  
+        temp : result.main.temp.toString(),
+        feelsLike : result.main.feels_like.toString(),
+        weather_description : result.weather[0].description,
+        icon : "http://openweathermap.org/img/wn/" + result.weather[0].icon + "@2x.png",
+        temp_min : result.main.temp_min.toString(), 
+        temp_max : result.main.temp_max.toString(), 
+        humidity : result.main.humidity.toString(), 
+        wind_speed : result.wind.speed.toString()
+      }
 
-          let currentWeather = {
-            time : newTime.toString(),  
-            temp : result.main.temp.toString(),
-            feelsLike : result.main.feels_like.toString(),
-            weather_description : result.weather[0].description,
-            icon : "http://openweathermap.org/img/wn/" + result.weather[0].icon + "@2x.png",
-            temp_min : result.main.temp_min.toString(), 
-            temp_max : result.main.temp_max.toString(), 
-            humidity : result.main.humidity.toString(), 
-            wind_speed : result.wind.speed.toString()
-          }
+      this.setState({
+        searchedCity : city,
+        currentWeather : currentWeather
+      });
 
-        this.setState({
-          searchedCity : city,
-          currentWeather : currentWeather
-        });
+      this.getTomorrowsWeather(this.state.searchedCity);
     })
     .catch((data, status) => {
 
