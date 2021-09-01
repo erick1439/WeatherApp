@@ -4,7 +4,7 @@ import "./Footer.css"
 function Footer() {
     return (
         <footer className="footer">
-            <p>This is only a nonsense example</p>
+            <p>© 2021 By Erick Pena & Jose Valdiviezo </p>
         </footer>
     );
 }
