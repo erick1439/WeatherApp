@@ -3,6 +3,7 @@
     height: 50vh;
     margin: 0 30px;
     margin-bottom: 10px;
+    box-shadow: 3px 3px 3px gray;
 }
 .card-body {
     display: grid;

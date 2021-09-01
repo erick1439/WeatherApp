@@ -7,13 +7,10 @@ function Home(props) {
     return(
         <main>
             <br/>
-            <br/>
             <div className="Container">
                 <WeatherCard title="Current Weather" city={props.weatherInfo.searchedCity} weatherInfo={props.weatherInfo.currentWeather}/>
                 <WeatherCard title="Tomorrow's Weather" city={props.weatherInfo.searchedCity} weatherInfo={props.weatherInfo.tomorrowsWeather}/>
             </div>          
-            <br/>
-            <br/>
             <TopNews/>
         </main>
     );
