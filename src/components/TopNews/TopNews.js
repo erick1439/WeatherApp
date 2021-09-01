@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, Card } from 'react-bootstrap'
+import { Carousel, Card, Button } from 'react-bootstrap'
 import "./TopNews.css"
 
 
@@ -48,6 +48,7 @@ class TopNews extends React.Component {
                         <Carousel.Caption className="background">
                             <h3>{this.state.news[0].title}</h3>
                             <p>{this.state.news[0].description}</p>
+                            <Button className="button" variant="light" onClick={() => { window.open(this.state.news[0].url, "_blank");}}>Read more...</Button>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -60,6 +61,7 @@ class TopNews extends React.Component {
                         <Carousel.Caption className="background">
                             <h3>{this.state.news[1].title}</h3>
                             <p>{this.state.news[1].description}</p>
+                            <Button className="button" variant="light" onClick={() => { window.open(this.state.news[1].url, "_blank");}}>Read more...</Button>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -72,7 +74,8 @@ class TopNews extends React.Component {
                         <Carousel.Caption className="background">
                             <h3>{this.state.news[2].title}</h3>
                             <p>{this.state.news[2].description}</p>
-                        </Carousel.Caption>
+                            <Button className="button" variant="light" onClick={() => { window.open(this.state.news[2].url, "_blank");}}>Read more...</Button>
+                        </Carousel.Caption>         
                     </Carousel.Item>
                 </Carousel>
             </div>
