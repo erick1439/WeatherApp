@@ -48,7 +48,7 @@ class TopNews extends React.Component {
                 <Carousel>
                     <Carousel.Item>
                         <img
-                        className="d-block w-100"
+                        className="news-img d-block w-100"
                         src={this.state.news[0].urlToImage}
                         alt="First slide"
                         />
@@ -60,7 +60,7 @@ class TopNews extends React.Component {
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
-                        className="d-block w-100"
+                        className="news-img d-block w-100"
                         src={this.state.news[1].urlToImage}
                         alt="Second slide"
                         />
@@ -73,7 +73,7 @@ class TopNews extends React.Component {
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
-                        className="d-block w-100"
+                        className="news-img d-block w-100"
                         src={this.state.news[2].urlToImage}
                         alt="Third slide"
                         />

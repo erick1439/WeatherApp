@@ -1,27 +1,28 @@
 .background {
-    background-color: rgb(0,0,0,75);
+    background-color: rgb(0,0,0,0.75);
     position: absolute !important;
     right: 0 !important;
     left: 0 !important;
+    bottom: 0 !important;
 }
 .news {
     margin: 20px 50px 20px 50px;
     box-sizing: border-box;
 }
-.news img {
+.news .news-img {
     box-sizing: border-box;
     width: inherit;
     height: 100vh !important;
 }
 .button {
-    margin-bottom: 5px;
+    margin-bottom: 30px;
 }
 .moreNewsBar {
     margin-top: 20px;
 }
 .cardsContainer {
-    margin: 20px 50px 20px 50px;
-    align-items: center;
-    display: grid;
-    grid-template-columns: auto auto auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0px 0px 0px;
+    justify-content: space-between;
 }
