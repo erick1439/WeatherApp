@@ -61,15 +61,13 @@ class Navegation extends React.Component {
                         <img alt="weather icon" heigth="50px" width="40px" src={this.state.icon}/>
                     </Navbar.Text>
                     <Navbar.Collapse id="navbarScroll">
-                        <Form className="d-flex">
                         <FormControl
                             type="search"
                             placeholder="Search City"
                             className="mr-2"
-                            aria-label="Search"
+                            aria-label="Search" 
                         />
                         <Button className="search" variant="outline-success" onClick={ (event) => {this.props.handler(event.target.previousSibling.value);}}>Search</Button>
-                        </Form>
                     </Navbar.Collapse>
                 </Navbar>
             </Container>

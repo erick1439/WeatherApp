@@ -24,8 +24,27 @@
     margin-top: 20px;
 }
 .cardsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 7px 0px 0px 0px;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    margin: 15px 0px 0px 0px;
+    row-gap: 15px;
+    column-gap: 100px;
+}
+@media only screen and (max-width: 1000px) {
+    .cardsContainer{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .cardsContainer{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+.card-title {
+    text-align: center;
 }
