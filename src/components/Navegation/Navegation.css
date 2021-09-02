@@ -1,0 +1,28 @@
+.container-fluid {
+    padding: 0px 0px !important;
+}
+
+.navbar{
+    padding: 0px 20px !important;
+}
+
+.search {
+    margin-left: 0.5rem;
+}
+
+h3 {
+    margin-left: 10px;
+}
+
+.info {
+    margin: auto 10px;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
