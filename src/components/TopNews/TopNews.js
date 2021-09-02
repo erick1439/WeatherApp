@@ -17,14 +17,16 @@ class TopNews extends React.Component {
 
     getNews() {
 
-        fetch ('https://newsapi.org/v2/top-headlines?country=us&apiKey=d960dcc8aae0413c9aba0c5ad0c717d4').then(res => res.json()).then((result) => { 
+        fetch ('https://gnews.io/api/v4/top-headlines?&lan=en&country=us&token=f75a581225abd89ba66b2dd68cd4652b').then(res => res.json()).then((result) => { 
 
             for (let i = 0; i < result.articles.length; i++) {
                 if (result.articles[i].urlToImage === null)
                     result.articles.splice(i, 1);
             }
 
-            let moreNews = result.articles.splice(3, result.articles.length / 3);
+            result.articles.splice(result.articles.length - 1, 1);
+
+            let moreNews = result.articles.splice(3, result.articles.length);
             let news = result.articles
 
             
@@ -49,7 +51,7 @@ class TopNews extends React.Component {
                     <Carousel.Item>
                         <img
                         className="news-img d-block w-100"
-                        src={this.state.news[0].urlToImage}
+                        src={this.state.news[0].image}
                         alt="First slide"
                         />
                         <Carousel.Caption className="background">
@@ -61,7 +63,7 @@ class TopNews extends React.Component {
                     <Carousel.Item>
                         <img
                         className="news-img d-block w-100"
-                        src={this.state.news[1].urlToImage}
+                        src={this.state.news[1].image}
                         alt="Second slide"
                         />
 
@@ -74,7 +76,7 @@ class TopNews extends React.Component {
                     <Carousel.Item>
                         <img
                         className="news-img d-block w-100"
-                        src={this.state.news[2].urlToImage}
+                        src={this.state.news[2].image}
                         alt="Third slide"
                         />
 
@@ -90,7 +92,7 @@ class TopNews extends React.Component {
                     { 
                         this.state.moreNews.map((story, index) => {
                             return(
-                                <MoreNews key={index} title={story.title} urlToImage={story.urlToImage} url={story.url}/>
+                                <MoreNews key={index} title={story.title} urlToImage={story.image} url={story.url}/>
                             );
                         })
                     }
