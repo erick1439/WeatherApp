@@ -37,11 +37,11 @@ class Navegation extends React.Component {
     getWeather(city) {
         
         
-        fetch ("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e").then(res => res.json()).then((result) => {
+        fetch ("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e").then(res => res.json()).then((result) => {
 
             this.setState({
                 temp : Math.round(result.main.temp).toString(),
-                icon : "http://openweathermap.org/img/wn/" + result.weather[0].icon + "@2x.png",
+                icon : "https://openweathermap.org/img/wn/" + result.weather[0].icon + "@2x.png",
             });
         });
     }

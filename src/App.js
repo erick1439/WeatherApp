@@ -68,7 +68,7 @@ class App extends React.Component {
 
   getTomorrowsWeather(city) {
 
-    fetch ("http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&cnt=2&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e")
+    fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&cnt=2&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e")
     .then(res => res.json())
     .then((result) => {
 
@@ -80,7 +80,7 @@ class App extends React.Component {
         temp : result.list[1].main.temp.toString(),
         feelsLike : result.list[1].main.feels_like.toString(),
         weather_description : result.list[1].weather[0].description,
-        icon : "http://openweathermap.org/img/wn/" + result.list[1].weather[0].icon + "@2x.png",
+        icon : "https://openweathermap.org/img/wn/" + result.list[1].weather[0].icon + "@2x.png",
         temp_min : result.list[1].main.temp_min.toString(), 
         temp_max : result.list[1].main.temp_max.toString(), 
         humidity : result.list[1].main.humidity.toString(), 
@@ -100,7 +100,7 @@ class App extends React.Component {
 
   getWeather(city) {
 
-    fetch ("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e")
+    fetch ("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e")
     .then(res => res.json())
     .then((result) => {
       
@@ -116,7 +116,7 @@ class App extends React.Component {
         temp : result.main.temp.toString(),
         feelsLike : result.main.feels_like.toString(),
         weather_description : result.weather[0].description,
-        icon : "http://openweathermap.org/img/wn/" + result.weather[0].icon + "@2x.png",
+        icon : "https://openweathermap.org/img/wn/" + result.weather[0].icon + "@2x.png",
         temp_min : result.main.temp_min.toString(), 
         temp_max : result.main.temp_max.toString(), 
         humidity : result.main.humidity.toString(), 
