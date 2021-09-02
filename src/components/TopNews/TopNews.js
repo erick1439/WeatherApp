@@ -24,7 +24,7 @@ class TopNews extends React.Component {
                     result.articles.splice(i, 1);
             }
 
-            let moreNews = result.articles.splice(3, result.articles.length);
+            let moreNews = result.articles.splice(3, result.articles.length / 3);
             let news = result.articles
 
             
@@ -43,51 +43,50 @@ class TopNews extends React.Component {
 
     render() {
         return(
-            <div>
-                <div className="news">
-                    <Card.Header className="text-center">Trending News</Card.Header>
-                    <Carousel>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src={this.state.news[0].urlToImage}
-                            alt="First slide"
-                            />
-                            <Carousel.Caption className="background">
-                                <h3>{this.state.news[0].title}</h3>
-                                <p>{this.state.news[0].description}</p>
-                                <Button className="button" variant="light" onClick={() => { window.open(this.state.news[0].url, "_blank");}}>Read more...</Button>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src={this.state.news[1].urlToImage}
-                            alt="Second slide"
-                            />
+            <div className="news">
+                <Card.Header className="text-center">Trending News</Card.Header>
+                <Carousel>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src={this.state.news[0].urlToImage}
+                        alt="First slide"
+                        />
+                        <Carousel.Caption className="background">
+                            <h3>{this.state.news[0].title}</h3>
+                            <p>{this.state.news[0].description}</p>
+                            <Button className="button" variant="light" onClick={() => { window.open(this.state.news[0].url, "_blank");}}>Read more...</Button>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src={this.state.news[1].urlToImage}
+                        alt="Second slide"
+                        />
 
-                            <Carousel.Caption className="background">
-                                <h3>{this.state.news[1].title}</h3>
-                                <p>{this.state.news[1].description}</p>
-                                <Button className="button" variant="light" onClick={() => { window.open(this.state.news[1].url, "_blank");}}>Read more...</Button>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src={this.state.news[2].urlToImage}
-                            alt="Third slide"
-                            />
+                        <Carousel.Caption className="background">
+                            <h3>{this.state.news[1].title}</h3>
+                            <p>{this.state.news[1].description}</p>
+                            <Button className="button" variant="light" onClick={() => { window.open(this.state.news[1].url, "_blank");}}>Read more...</Button>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src={this.state.news[2].urlToImage}
+                        alt="Third slide"
+                        />
 
-                            <Carousel.Caption className="background">
-                                <h3>{this.state.news[2].title}</h3>
-                                <p>{this.state.news[2].description}</p>
-                                <Button className="button" variant="light" onClick={() => { window.open(this.state.news[2].url, "_blank");}}>Read more...</Button>
-                            </Carousel.Caption>         
-                        </Carousel.Item>
-                    </Carousel>  
-                </div>
-                <div className="storyCard">
+                        <Carousel.Caption className="background">
+                            <h3>{this.state.news[2].title}</h3>
+                            <p>{this.state.news[2].description}</p>
+                            <Button className="button" variant="light" onClick={() => { window.open(this.state.news[2].url, "_blank");}}>Read more...</Button>
+                        </Carousel.Caption>         
+                    </Carousel.Item>
+                </Carousel> 
+                <Card.Header className=" moreNewsBar text-center">More News</Card.Header>
+                <div className="cardsContainer">    
                     { 
                         this.state.moreNews.map((story, index) => {
                             return(
@@ -97,6 +96,8 @@ class TopNews extends React.Component {
                     }
                 </div>
             </div>
+        
+        
         );
     }
 }

@@ -16,3 +16,12 @@
 .button {
     margin-bottom: 5px;
 }
+.moreNewsBar {
+    margin-top: 20px;
+}
+.cardsContainer {
+    margin: 20px 50px 20px 50px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
