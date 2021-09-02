@@ -1,4 +1,23 @@
-.storyCard {
-    display: inline-block;
+.cardMore{
+    height: 100%;
     width: 100% !important;
+    object-fit: cover;
 }
+.cardMore img{
+    height: 200px !important;
+}
+.cardMoreBody{
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    color:white;
+}
+.cardMoreButton > div{
+    height: auto !important;
+}
+.cardMoreButton{
+    width: 100%;
+    height: 50px;
+}
+
