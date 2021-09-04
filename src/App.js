@@ -42,10 +42,11 @@ class App extends React.Component {
   }
 
   handler(value) {
-
-    value = value.charAt(0).toUpperCase() + value.slice(1);
-    this.getWeather(value);
-    this.getTomorrowsWeather(value);
+    if (value !== ""){
+      value = value.charAt(0).toUpperCase() + value.slice(1);
+      this.getWeather(value);
+      this.getTomorrowsWeather(value);
+    } 
   }
 
   getDefaultLocation() {
@@ -143,7 +144,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar handler={this.handler} />
+        <Navbar handler={this.handler}/>
         <Home weatherInfo={this.state}/>
         <Footer/>
       </div>

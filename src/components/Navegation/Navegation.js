@@ -60,15 +60,15 @@ class Navegation extends React.Component {
                         <p className="info">{this.state.city}, {this.state.region} {this.state.temp} &deg;F</p>
                         <img alt="weather icon" heigth="50px" width="40px" src={this.state.icon}/>
                     </Navbar.Text>
-                    <Navbar.Collapse id="navbarScroll">
+                    <div id="navbarSearch">
                         <FormControl
                             type="search"
                             placeholder="Search City"
                             className="mr-2"
                             aria-label="Search" 
                         />
-                        <Button className="search" variant="outline-success" onClick={ (event) => {this.props.handler(event.target.previousSibling.value);}}>Search</Button>
-                    </Navbar.Collapse>
+                        <Button className="search" value={this.props.searchedCity} variant="outline-success" onClick={ (event) => {this.props.handler(event.target.previousSibling.value);}}>Search</Button>
+                    </div>
                 </Navbar>
             </Container>
         );
