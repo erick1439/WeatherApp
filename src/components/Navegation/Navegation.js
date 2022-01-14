@@ -16,7 +16,7 @@ class Navegation extends React.Component {
 
     getCity() {
 
-        fetch('https://extreme-ip-lookup.com/json/')
+        fetch('https://extreme-ip-lookup.com/json/?key=CwKhs51hn10LK8Q6Lae0')
             .then( res => res.json())
             .then(response => {
                 
