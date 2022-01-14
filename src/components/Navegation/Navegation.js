@@ -16,7 +16,7 @@ class Navegation extends React.Component {
 
     getCity() {
 
-        fetch('https://extreme-ip-lookup.com/json/')
+        fetch('https://extreme-ip-lookup.com/json/?key=CwKhs51hn10LK8Q6Lae0')
             .then( res => res.json())
             .then(response => {
                 
@@ -38,6 +38,9 @@ class Navegation extends React.Component {
         
         
         fetch ("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e").then(res => res.json()).then((result) => {
+
+            console.log(result);
+            console.log("is thi working")
 
             this.setState({
                 temp : Math.round(result.main.temp).toString(),
