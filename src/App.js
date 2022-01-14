@@ -1,79 +1,52 @@
-
-import './App.css';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navegation/Navegation.js';
 import Home from './components/Home/Home.js'
 import Footer from './components/Footer/Footer.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import './App.css';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+function App() {
 
-    this.state = {
-      searchedCity : "",
-      currentWeather :
-      {
-        time : "",  
-        temp : "",
-        feelsLike : "",
-        weather_description : "",
-        icon : "",
-        temp_min : "", 
-        temp_max : "", 
-        humidity : "", 
-        wind_speed : "",
-      },
-      tomorrowsWeather : 
-      {
-        time : "",
-        temp : "",
-        feelsLike : "",
-        weather_description : "",
-        icon : "",
-        temp_min : "", 
-        temp_max : "", 
-        humidity : "", 
-        wind_speed : ""
-      }
-    }
+  const [searchedCity, setSearchedCity] = useState('');
+  const [currentWeather, setCurrentWeather] = useState( {
+    time : "",  
+    temp : "",
+    feelsLike : "",
+    weather_description : "",
+    icon : "",
+    temp_min : "", 
+    temp_max : "", 
+    humidity : "", 
+    wind_speed : "",
+  });
 
-    this.handler = this.handler.bind(this);
-  }
+  const [tomorrowsWeather, setTomorrowsWeather] = useState({
+    time : "",
+    temp : "",
+    feelsLike : "",
+    weather_description : "",
+    icon : "",
+    temp_min : "", 
+    temp_max : "", 
+    humidity : "", 
+    wind_speed : ""
+  });
 
-  handler(value) {
-    if (value !== ""){
-      value = value.charAt(0).toUpperCase() + value.slice(1);
-      this.getWeather(value);
-      this.getTomorrowsWeather(value);
+  const handler = (city) => {
+    if (city !== ""){
+      city = city.charAt(0).toUpperCase() + city.slice(1);
+      getWeather(city);
+      getTomorrowsWeather(city);
     } 
   }
 
-  getDefaultLocation() {
-    
-    fetch('https://extreme-ip-lookup.com/json/?key=CwKhs51hn10LK8Q6Lae0')
-    .then(res => res.json())
-    .then(response => {
-        
-        this.setState({
-            searchedCity : response.city.charAt(0).toUpperCase() + response.city.slice(1),
-        });
-
-        this.getWeather(this.state.searchedCity);
-
-    })
-    .catch((data, status) => {
-        alert("Location Service Error")
-    });
-  }
-
-  getTomorrowsWeather(city) {
+  const getTomorrowsWeather = (city) => {
 
     fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&cnt=2&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e")
     .then(res => res.json())
     .then((result) => {
 
-      const tomorrow = new Date(this.state.currentWeather.time);
+      const tomorrow = new Date(currentWeather.time);
       tomorrow.setDate(tomorrow.getDate() + 1);
 
       let tomorrowsWeather = {
@@ -88,18 +61,15 @@ class App extends React.Component {
         wind_speed : result.list[1].wind.speed.toString()
       }
 
-      this.setState({
-        tomorrowsWeather : tomorrowsWeather       
-      });
+      setTomorrowsWeather(tomorrowsWeather);
 
     })
     .catch((data, status) => {
       console.log("Unavailble to fetch tomorros weather");
     });
-
   }
 
-  getWeather(city) {
+  const getWeather = (city) => {
 
     fetch ("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=3adf9dfabe4e331cfafdbd65868b459e")
     .then(res => res.json())
@@ -124,32 +94,45 @@ class App extends React.Component {
         wind_speed : result.wind.speed.toString()
       }
 
-      this.setState({
-        searchedCity : city,
-        currentWeather : currentWeather
-      });
+      setCurrentWeather(currentWeather);
+      getTomorrowsWeather(city);
 
-      this.getTomorrowsWeather(this.state.searchedCity);
     })
     .catch((data, status) => {
 
       alert("Please insert valid location");
-  });  
-}
-
-  componentDidMount() {
-    this.getDefaultLocation();
+    });  
   }
 
-  render() {
-    return (
-      <div>
-        <Navbar handler={this.handler}/>
-        <Home weatherInfo={this.state}/>
-        <Footer/>
-      </div>
-    );
+  const getDefaultLocation = () => {
+    
+    fetch('https://extreme-ip-lookup.com/json/?key=CwKhs51hn10LK8Q6Lae0')
+    .then(res => res.json())
+    .then(response => {
+
+      let city = response.city.charAt(0).toUpperCase() + response.city.slice(1);
+
+      setSearchedCity(city);
+      getWeather(city);
+
+    })
+    .catch((data, status) => {
+        alert("Location Service Error. Enable your location services")
+    });
   }
+
+  useEffect( () => {
+    getDefaultLocation();
+
+  }, []);
+
+  return(
+    <div>
+      <Navbar handler={handler}/>
+      <Home searchedCity={searchedCity} currentWeather={currentWeather} tomorrowsWeather={tomorrowsWeather}/>
+      <Footer/>
+    </div>
+  );
 }
 
 export default App;

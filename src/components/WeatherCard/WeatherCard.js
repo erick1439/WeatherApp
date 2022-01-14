@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap'
 import "./WeatherCard.css"
 
-function WeatherCard({city, title, weatherInfo}) {
+function WeatherCard({title, city, weatherInfo}) {
 
     const tokens = weatherInfo.time.split(" ");
 

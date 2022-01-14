@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, FormControl, Button, Container} from 'react-bootstrap'
 import "./Navegation.css"
 
-function Navegation(props) {
-
-    console.log(props);
+function Navegation({handler}) {
 
     const [city, setCity] = useState('');
     const [region, setRegion] = useState('');
@@ -56,7 +54,7 @@ function Navegation(props) {
                         className="mr-2"
                         aria-label="Search" 
                     />
-                    <Button className="search" value={props.searchedCity} variant="outline-success" onClick={ (event) => {props.handler(event.target.previousSibling.value);}}>Search</Button>
+                    <Button className="search" variant="outline-success" onClick={ (event) => {handler(event.target.previousSibling.value);}}>Search</Button>
                 </div>
             </Navbar>
         </Container>
