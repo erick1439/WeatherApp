@@ -3,13 +3,13 @@ import WeatherCard from '../WeatherCard/WeatherCard.js';
 import TopNews from '../TopNews/TopNews.js'
 import "./Home.css"
 
-function Home(props) {
+function Home({weatherInfo}) {
     return(
         <main>
             <br/>
             <div className="Container">
-                <WeatherCard title="Current Weather" city={props.weatherInfo.searchedCity} weatherInfo={props.weatherInfo.currentWeather}/>
-                <WeatherCard title="Tomorrow's Weather" city={props.weatherInfo.searchedCity} weatherInfo={props.weatherInfo.tomorrowsWeather}/>
+                <WeatherCard title="Current Weather" city={weatherInfo.searchedCity} weatherInfo={weatherInfo.currentWeather}/>
+                <WeatherCard title="Tomorrow's Weather" city={weatherInfo.searchedCity} weatherInfo={weatherInfo.tomorrowsWeather}/>
             </div>          
             <TopNews/>
         </main>
