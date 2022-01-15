@@ -94,6 +94,7 @@ function App() {
         wind_speed : result.wind.speed.toString()
       }
 
+      setSearchedCity(city);
       setCurrentWeather(currentWeather);
       getTomorrowsWeather(city);
 
