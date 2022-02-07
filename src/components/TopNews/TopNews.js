@@ -17,7 +17,7 @@ class TopNews extends React.Component {
 
     getNews() {
 
-        fetch ('https://gnews.io/api/v4/top-headlines?&lan=en&country=us&token=f75a581225abd89ba66b2dd68cd4652b').then(res => res.json()).then((result) => { 
+        fetch ('https://gnews.io/api/v4/top-headlines?&lan=en&country=us&token=99e3ab41facb6a154873e26c03cfc7ae').then(res => res.json()).then((result) => { 
 
             for (let i = 0; i < result.articles.length; i++) {
                 if (result.articles[i].urlToImage === null)
